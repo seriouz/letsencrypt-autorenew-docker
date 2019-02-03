@@ -43,7 +43,7 @@ The following volumes of interest can be mounted on the docker host or as docker
   - `sub.domain1.com,sub.domain2.com`
   - `my.other.domain.com sub.domain1.com,sub.domain2.com`
 - **EMAIL** : email of the certificates supplicant
-- **CONCAT** : whether to concatenate the full chain of the certificate authority with the certificate's private key. This is required for example for haproxy. Otherwise the full chain and private key are kept in separate files which is required for example for nginx and apache
+- **CONCAT** : whether to concatenate the full chain of the certificate authority with the certificate's private key. This is required for example for haproxy. Otherwise the full chain and private key are kept in separate files which is required for example for nginx and apache **and** the concatenated file is produced.
 - **HEALTH_CHECK_URL** : a publicly accessible health check url on which the software in the docker container can verify and wait for the docker host to be up and ready to accept connections
 
 #### Example
