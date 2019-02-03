@@ -33,15 +33,16 @@ copyCertificate() {
 
   # certs are copied to /certs directory
   if [ "$CONCAT" = true ]; then
-   # concat the full chain with the private key (e.g. for haproxy)
+   # concat only the full chain with the private key (e.g. for haproxy)
    cat /etc/letsencrypt/live/$d/fullchain.pem /etc/letsencrypt/live/$d/privkey.pem > /certs/$d.pem
    logger_info "Certificates for $d concatenated and copied to /certs dir"
   else
-   # keep full chain and private key in separate files (e.g. for nginx and apache)
+   # keep full chain and private key in separate files (e.g. for nginx and apache) and create the concat
    cp /etc/letsencrypt/live/$d/cert.pem /certs/$d.pem
    cp /etc/letsencrypt/live/$d/privkey.pem /certs/$d.key.pem
    cp /etc/letsencrypt/live/$d/chain.pem /certs/$d.chain.pem
    cp /etc/letsencrypt/live/$d/fullchain.pem /certs/$d.fullchain.pem
+   cat /etc/letsencrypt/live/$d/fullchain.pem /etc/letsencrypt/live/$d/privkey.pem > /certs/$d.concat.pem
    logger_info "Certificates for $d and copied to /certs dir"
   fi
 }
